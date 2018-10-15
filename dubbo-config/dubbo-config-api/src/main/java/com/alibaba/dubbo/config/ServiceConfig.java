@@ -211,7 +211,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 }
             }, delay, TimeUnit.MILLISECONDS);
         } else {
-            doExport();
+            doExport(); // 发布服务
         }
     }
 
@@ -312,7 +312,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         if (path == null || path.length() == 0) {
             path = interfaceName;
         }
-        doExportUrls();
+        doExportUrls(); // 发布 URL
         ProviderModel providerModel = new ProviderModel(getUniqueServiceName(), this, ref);
         ApplicationModel.initProviderModel(getUniqueServiceName(), providerModel);
     }
@@ -353,7 +353,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     private void doExportUrls() {
         List<URL> registryURLs = loadRegistries(true);
         for (ProtocolConfig protocolConfig : protocols) {
-            doExportUrlsFor1Protocol(protocolConfig, registryURLs);
+            doExportUrlsFor1Protocol(protocolConfig, registryURLs); // 发布 URL
         }
     }
 
@@ -370,7 +370,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         if (ConfigUtils.getPid() > 0) {
             map.put(Constants.PID_KEY, String.valueOf(ConfigUtils.getPid()));
         }
-        appendParameters(map, application);
+        appendParameters(map, application); // 添加 application 的配置
         appendParameters(map, module);
         appendParameters(map, provider, Constants.DEFAULT_KEY);
         appendParameters(map, protocolConfig);
@@ -513,7 +513,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 }
             }
         }
-        this.urls.add(url);
+        this.urls.add(url); // 完成 URL 的组装 dubbo://10.10.17.187:29581/com.alibaba.dubbo.config.api.DemoService?anyhost=true&application=generic-provider&bind.ip=10.10.17.187&bind.port=29581&dubbo=2.0.0&generic=true&interface=com.alibaba.dubbo.config.api.DemoService&methods=*&pid=12299&side=provider&timestamp=1539603028855
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

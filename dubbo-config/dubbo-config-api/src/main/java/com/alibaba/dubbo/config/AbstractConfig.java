@@ -177,7 +177,7 @@ public abstract class AbstractConfig implements Serializable {
     }
 
     protected static void appendParameters(Map<String, String> parameters, Object config) {
-        appendParameters(parameters, config, null);
+        appendParameters(parameters, config, null); // 添加服务配置
     }
 
     @SuppressWarnings("unchecked")
